@@ -9,6 +9,9 @@ public abstract class Game {
         this.isCardGame = isCardGame;
     }
 
-
+    /**
+     * Defines some rules and number of players.
+     * Outputs it to the console window
+     */
     public abstract void createGame();
 }

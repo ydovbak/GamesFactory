@@ -1,5 +1,10 @@
 public class GameFactory {
 
+    /**
+     * Factory method that creates an object of the game depending on the name of the game
+     * @param name name of the game
+     * @return Game object that was created
+     */
     public Game createGame(String name) {
         if(name.equals("Uno")) {
             return new Uno("Uno", 8, true);
