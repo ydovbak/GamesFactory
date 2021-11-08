@@ -5,22 +5,22 @@ public class GameFactory {
      * @param name name of the game
      * @return Game object that was created
      */
-    public Game createGame(String name) {
+    public Game createGame(String name, String personalGameName, int numOfPlayers) {
         if(name.equals("Uno")) {
-            return new Uno("Uno", 8, true);
+            return new Uno(personalGameName, numOfPlayers, true);
         }
         else if(name.equals("Checkers")) {
-            return new Checkers("Checkers", false);
+            return new Checkers(personalGameName, false);
         }
         else if(name.equals("Chess")) {
-            return new Chess("Chess", false);
+            return new Chess(personalGameName, false);
         }
         else if (name.equals("Poker")) {
-            return new Poker("Poker", 6, true);
+            return new Poker(personalGameName, numOfPlayers, true);
         }
         else {
             // it's always good to play chess
-            return new Chess("Chess, why not?", false);
+            return new Chess(personalGameName, false);
         }
 
     }

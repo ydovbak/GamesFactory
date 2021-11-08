@@ -1,4 +1,6 @@
-public abstract class Game {
+import java.io.Serializable;
+
+public abstract class Game implements Serializable {
     protected String name;
     protected int numOfPlayers;
     protected boolean isCardGame;
