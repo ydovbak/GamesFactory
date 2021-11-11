@@ -1,15 +1,14 @@
 package com.tus.model;
 
-import java.rmi.RemoteException;
-
 public class Chess extends Game{
     public Chess(String name, boolean isCardGame) {
         super(name, 2, isCardGame);
+        super.setName("Chess");
     }
 
     @Override
     public void createGame() {
-        String output = "\n*************************" + name +"*****************************" +
+        String output = "\n*************************" + uniqueName +"*****************************" +
                 "\nThe board is setup as shown. There should always be a white " +
                 "\nsquare at the closest right-hand side for both players. " +
                 "\nRemember that the queen must be on a square that matches her color.\n" +

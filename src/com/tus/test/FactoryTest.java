@@ -14,22 +14,22 @@ public class FactoryTest {
     public static void main(String[] args) throws RemoteException {
         GameFactory factory = new GameFactory();
 
-//        Game game1 = factory.createGame("Uno", "Uno with classmates", 6);
-//        Game game2 = factory.createGame("Uno", "Uno with classmates", 3);
-//        Game game3 = factory.createGame("Poker", "Poker with friends", 3);
+        Game game1 = factory.createGame("Uno", "Uno with classmates", 6);
+        Game game2 = factory.createGame("Uno", "Uno with classmates", 3);
+        Game game3 = factory.createGame("Poker", "Poker with friends", 3);
 
-//        game1.createGame();
-//        game2.createGame();
-//        game3.createGame();
+        game1.createGame();
+        game2.createGame();
+        game3.createGame();
 
         ArrayList<Game> games = new ArrayList<Game>();
-//        games.add(game1);
-//        games.add(game2);
-//        games.add(game3);
+        games.add(game1);
+        games.add(game2);
+        games.add(game3);
 
         // serialise the phones:
         Serialization serialization = new Serialization();
-        //serialization.serialise(games);
+        serialization.serialise(games);
 
         games = serialization.deserialize("games.ser");
         for (Game game : games) {

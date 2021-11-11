@@ -4,11 +4,12 @@ public class Uno extends Game {
 
     public Uno(String name, int numOfPlayers, boolean isCardGame) {
         super(name, numOfPlayers, isCardGame);
+        super.setName("Uno");
     }
 
     @Override
     public void createGame() {
-        String output = "\n*****************************" + name +"*********************************" +
+        String output = "\n*****************************" + uniqueName +"*********************************" +
                 "\nPlayer with the highest point value is the dealer. " +
                 "\nShuffle the deck. Each player is dealt 7 cards.\n" +
                 "\nPlace the remaining cards facedown to form a draw pile. " +

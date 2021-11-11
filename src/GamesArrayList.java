@@ -4,6 +4,9 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+/**
+ * Implementation of the Remote ArrayList
+ */
 public class GamesArrayList  extends UnicastRemoteObject implements IArrayList{
 
     private ArrayList<Game> games;
