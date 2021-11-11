@@ -1,3 +1,7 @@
+package com.tus.model;
+
+import java.rmi.RemoteException;
+
 public class Chess extends Game{
     public Chess(String name, boolean isCardGame) {
         super(name, 2, isCardGame);

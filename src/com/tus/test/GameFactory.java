@@ -1,11 +1,17 @@
+package com.tus.test;
+
+import com.tus.model.*;
+
+import java.rmi.RemoteException;
+
 public class GameFactory {
 
     /**
      * Factory method that creates an object of the game depending on the name of the game
      * @param name name of the game
-     * @return Game object that was created
+     * @return model.Game object that was created
      */
-    public Game createGame(String name, String personalGameName, int numOfPlayers) {
+    public Game createGame(String name, String personalGameName, int numOfPlayers) throws RemoteException {
         if(name.equals("Uno")) {
             return new Uno(personalGameName, numOfPlayers, true);
         }

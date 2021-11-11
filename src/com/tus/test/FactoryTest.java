@@ -1,3 +1,9 @@
+package com.tus.test;
+
+import com.tus.model.Game;
+import com.tus.server.Serialization;
+
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class FactoryTest {
@@ -5,13 +11,13 @@ public class FactoryTest {
 
 // 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
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RemoteException {
         GameFactory factory = new GameFactory();
 
 //        Game game1 = factory.createGame("Uno", "Uno with classmates", 6);
 //        Game game2 = factory.createGame("Uno", "Uno with classmates", 3);
-//        Game game3 = factory.createGame("Poker", "Poker with freiends", 3);
-//
+//        Game game3 = factory.createGame("Poker", "Poker with friends", 3);
+
 //        game1.createGame();
 //        game2.createGame();
 //        game3.createGame();
@@ -23,6 +29,8 @@ public class FactoryTest {
 
         // serialise the phones:
         Serialization serialization = new Serialization();
+        //serialization.serialise(games);
+
         games = serialization.deserialize("games.ser");
         for (Game game : games) {
             game.createGame();

@@ -1,3 +1,5 @@
+package com.tus.model;
+
 public class Uno extends Game {
 
     public Uno(String name, int numOfPlayers, boolean isCardGame) {

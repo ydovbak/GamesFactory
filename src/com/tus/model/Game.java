@@ -1,4 +1,8 @@
+package com.tus.model;
+
 import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 public abstract class Game implements Serializable {
     protected String name;

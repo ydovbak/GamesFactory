@@ -1,3 +1,7 @@
+package com.tus.server;
+
+import com.tus.model.Game;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
