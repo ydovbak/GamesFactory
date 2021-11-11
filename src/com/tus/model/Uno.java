@@ -1,15 +1,14 @@
 package com.tus.model;
 
 public class Uno extends Game {
-
-    public Uno(String name, int numOfPlayers, boolean isCardGame) {
-        super(name, numOfPlayers, isCardGame);
-        super.setName("Uno");
+    public Uno(String personalName, int numOfPlayers, boolean isCardGame) {
+        super(personalName, numOfPlayers, isCardGame);
+        super.setGameType("Uno");
     }
 
     @Override
-    public void createGame() {
-        String output = "\n*****************************" + uniqueName +"*********************************" +
+    public String createGame() {
+        String output = "\n*****************************" + personalName +"*********************************" +
                 "\nPlayer with the highest point value is the dealer. " +
                 "\nShuffle the deck. Each player is dealt 7 cards.\n" +
                 "\nPlace the remaining cards facedown to form a draw pile. " +
@@ -18,7 +17,7 @@ public class Uno extends Game {
                 "\nand pick another card. " +
                 "\n- For all other cards, see directions for those cards. \n" +
                 "\nPlayers in game: " + numOfPlayers +
-                "\n*****************************************************************";
-        System.out.println(output);
+                "\n*****************************************************************************************";
+        return output;
     }
 }

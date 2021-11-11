@@ -6,9 +6,9 @@ import java.awt.event.WindowListener;
 
 public class GUIView extends JFrame {
     // font for the GUI
-    Font  f1  = new Font(Font.SERIF, Font.PLAIN,  16);
+    Font  f1  = new Font(Font.SERIF, Font.PLAIN,  20);
 
-    // Lecturers button and labels
+    // Game buttons and labels
     private JButton addGame = new JButton("Add Game");
     private JButton removeGame = new JButton("Remove Game");
     private JButton editGame = new JButton("Edit Game");
@@ -19,15 +19,14 @@ public class GUIView extends JFrame {
     private JLabel chooseGameLab = new JLabel("Chose the game:");
     private JLabel uniqueNameLab = new JLabel("Unique Name:");
     private JLabel numOfPlayersLab = new JLabel("Number of players:");
-    private JLabel warning = new JLabel("***Add Warning***: ");
+    private JLabel warning = new JLabel("");
+
+    private JTextField uniqueNameField = new JTextField();
+    private JTextField numOfPlayersField = new JTextField();
 
     private String[] gameTypes = { "Uno", "Checkers", "Chess", "Poker" };
     private JComboBox gameTypesComboBox = new JComboBox(gameTypes);
     private JComboBox gameIdsComboBox = new JComboBox();
-
-    //private JTextField gameIdField = new JTextField();
-    private JTextField uniqueNameField = new JTextField();
-    private JTextField numOfPlayersField = new JTextField();
 
     // print area
     private JButton printAllBtn = new JButton("Print All");
@@ -38,19 +37,20 @@ public class GUIView extends JFrame {
     private JPanel menuPanel = new JPanel();
     private JPanel comboBoxPanel = new JPanel();
     private JPanel idComboBoxPanel = new JPanel();
-    private JPanel panelGame = new JPanel();
+    private JPanel gamePanel = new JPanel();
     private JPanel mainPanel = new JPanel();
     private JPanel printPanel = new JPanel();
 
     // container for everything
     private Container contentPane = this.getContentPane();
 
-    private int IDs;
-
-
     public GUIView(int numOfIds)
     {
-        this.IDs = numOfIds;
+        // initialise the ComboBox containing IDs
+        initIdComboComboBox(numOfIds);
+
+        // basic window setup
+        this.setTitle("Games Factory");
         this.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));
         this.setSize(1000,650);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -77,9 +77,16 @@ public class GUIView extends JFrame {
         printAllBtn.setFont(f1);
         printLab.setFont(f1);
 
-        // combo box set up
-        initIdComboComboBox(IDs);
+        // Games combo box
+        comboBoxPanel.setLayout(new BoxLayout(comboBoxPanel, BoxLayout.X_AXIS));
+        comboBoxPanel.add(chooseGameLab);
+        comboBoxPanel.add(gameTypesComboBox);
         gameTypesComboBox.setSelectedIndex(0);
+
+        // Ids combo box
+        idComboBoxPanel.setLayout(new BoxLayout(idComboBoxPanel, BoxLayout.X_AXIS));
+        idComboBoxPanel.add(gameIdLab);
+        idComboBoxPanel.add(gameIdsComboBox);
         gameIdsComboBox.setSelectedIndex(0);
 
         // adding buttons to the menu panel
@@ -89,29 +96,18 @@ public class GUIView extends JFrame {
         menuPanel.add(viewGame);
         menuPanel.add(printAllBtn);
 
-        // Games combo box
-        comboBoxPanel.setLayout(new BoxLayout(comboBoxPanel, BoxLayout.X_AXIS));
-        comboBoxPanel.add(chooseGameLab);
-        comboBoxPanel.add(gameTypesComboBox);
-
-        // Ids combo box
-        idComboBoxPanel.setLayout(new BoxLayout(idComboBoxPanel, BoxLayout.X_AXIS));
-        idComboBoxPanel.add(gameIdLab);
-        idComboBoxPanel.add(gameIdsComboBox);
-
-
         // setting the layout of the panels
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.X_AXIS));
-        panelGame.setLayout(new BoxLayout(panelGame, BoxLayout.PAGE_AXIS));
+        gamePanel.setLayout(new BoxLayout(gamePanel, BoxLayout.PAGE_AXIS));
 
         // Game labels and input fields
-        panelGame.add(uniqueNameLab);
-        panelGame.add(uniqueNameField);
-        panelGame.add(numOfPlayersLab);
-        panelGame.add(numOfPlayersField);
-        panelGame.add(playGameBtn);
-        panelGame.add(warning);
+        gamePanel.add(uniqueNameLab);
+        gamePanel.add(uniqueNameField);
+        gamePanel.add(numOfPlayersLab);
+        gamePanel.add(numOfPlayersField);
+        gamePanel.add(playGameBtn);
+        gamePanel.add(warning);
 
         // make print area scrollable
         printPanel.setLayout(new BorderLayout());
@@ -119,19 +115,19 @@ public class GUIView extends JFrame {
         printPanel.add(printLab, BorderLayout.NORTH);
         printPanel.add(scroll, BorderLayout.CENTER);
 
+        // set up the content pane with multiple panels
+        mainPanel.add(gamePanel);
         contentPane.add(menuPanel);
         contentPane.add(idComboBoxPanel);
         contentPane.add(comboBoxPanel);
-
         contentPane.add(mainPanel);
-        mainPanel.add(panelGame);
         contentPane.add(printPanel);
 
         this.setVisible(true);
     }
 
     /*
-    Method is used to reset the Ids combo box every time the number of games changes
+    Method is used to reset the Ids-ComboBox every time the number of games changes
      */
     public void initIdComboComboBox(int ids) {
         gameIdsComboBox.removeAllItems();
@@ -146,168 +142,47 @@ public class GUIView extends JFrame {
     }
 
     public void setWarning(String warnMsg) {
-        warning.setText("***Warning*** " + warnMsg);
+        warning.setText(warnMsg);
     }
-
 
     public JButton getAddGame() {
         return addGame;
-    }
-
-    public void setAddGame(JButton addGame) {
-        this.addGame = addGame;
     }
 
     public JButton getRemoveGame() {
         return removeGame;
     }
 
-    public void setRemoveGame(JButton removeGame) {
-        this.removeGame = removeGame;
-    }
-
     public JButton getEditGame() {
         return editGame;
-    }
-
-    public void setEditGame(JButton editGame) {
-        this.editGame = editGame;
     }
 
     public JButton getViewGame() {
         return viewGame;
     }
 
-    public void setViewGame(JButton viewGame) {
-        this.viewGame = viewGame;
-    }
-
     public JButton getPlayGameBtn() {
         return playGameBtn;
-    }
-
-    public void setPlayGameBtn(JButton playGameBtn) {
-        this.playGameBtn = playGameBtn;
-    }
-
-    public JLabel getChooseGameLab() {
-        return chooseGameLab;
-    }
-
-    public void setChooseGameLab(JLabel chooseGameLab) {
-        this.chooseGameLab = chooseGameLab;
-    }
-
-    public JLabel getUniqueNameLab() {
-        return uniqueNameLab;
-    }
-
-    public void setUniqueNameLab(JLabel uniqueNameLab) {
-        this.uniqueNameLab = uniqueNameLab;
-    }
-
-    public JLabel getNumOfPlayersLab() {
-        return numOfPlayersLab;
-    }
-
-    public void setNumOfPlayersLab(JLabel numOfPlayersLab) {
-        this.numOfPlayersLab = numOfPlayersLab;
-    }
-
-    public JLabel getWarning() {
-        return warning;
-    }
-
-    public void setWarning(JLabel warning) {
-        this.warning = warning;
-    }
-
-    public String[] getGameTypes() {
-        return gameTypes;
-    }
-
-    public void setGameTypes(String[] gameTypes) {
-        this.gameTypes = gameTypes;
     }
 
     public JComboBox getGameTypesComboBox() {
         return gameTypesComboBox;
     }
 
-    public void setGameTypesComboBox(JComboBox gameTypesComboBox) {
-        this.gameTypesComboBox = gameTypesComboBox;
-    }
-
     public JTextField getUniqueNameField() {
         return uniqueNameField;
-    }
-
-    public void setUniqueNameField(JTextField uniqueNameField) {
-        this.uniqueNameField = uniqueNameField;
     }
 
     public JTextField getNumOfPlayersField() {
         return numOfPlayersField;
     }
 
-    public void setNumOfPlayersField(JTextField numOfPlayersField) {
-        this.numOfPlayersField = numOfPlayersField;
-    }
-
     public JButton getPrintAllBtn() {
         return printAllBtn;
     }
 
-    public void setPrintAllBtn(JButton printAllBtn) {
-        this.printAllBtn = printAllBtn;
-    }
-
-    public JLabel getPrintLab() {
-        return printLab;
-    }
-
-    public void setPrintLab(JLabel printLab) {
-        this.printLab = printLab;
-    }
-
     public JTextArea getPrintArea() {
         return printArea;
-    }
-
-    public void setPrintArea(JTextArea printArea) {
-        this.printArea = printArea;
-    }
-
-    public JPanel getMenuPanel() {
-        return menuPanel;
-    }
-
-    public void setMenuPanel(JPanel menuPanel) {
-        this.menuPanel = menuPanel;
-    }
-
-    public JPanel getPanelGame() {
-        return panelGame;
-    }
-
-    public void setPanelGame(JPanel panelGame) {
-        this.panelGame = panelGame;
-    }
-
-    public JPanel getMainPanel() {
-        return mainPanel;
-    }
-
-    public void setMainPanel(JPanel mainPanel) {
-        this.mainPanel = mainPanel;
-    }
-
-    public JPanel getPrintPanel() {
-        return printPanel;
-    }
-
-    public void setPrintPanel(JPanel printPanel) {
-        this.printPanel = printPanel;
     }
 
     public JComboBox getGameIdsComboBox() {

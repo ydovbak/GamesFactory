@@ -1,7 +1,7 @@
-package com.tus.test;
+package com.tus.factory;
 
 import com.tus.model.Game;
-import com.tus.server.Serialization;
+import com.tus.serialization.Serialization;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -31,9 +31,9 @@ public class FactoryTest {
         Serialization serialization = new Serialization();
         serialization.serialise(games);
 
-        games = serialization.deserialize("games.ser");
+        games = serialization.deserialize();
         for (Game game : games) {
-            game.createGame();
+            System.out.println(game.createGame());
         }
     }
 }

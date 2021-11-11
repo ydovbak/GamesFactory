@@ -9,6 +9,6 @@ import java.util.ArrayList;
  * The interface defines methods to get and set the ArrayList.
  */
 public interface IArrayList extends Remote {
-    public ArrayList<Game> getGames()  throws RemoteException;
-    public void setGames(ArrayList<Game> games) throws RemoteException;
+    ArrayList<Game> getGames()  throws RemoteException;
+    void setGames(ArrayList<Game> games) throws RemoteException;
 }
